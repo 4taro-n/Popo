@@ -1,0 +1,38 @@
+{
+	"expo": {
+		"name": "Popo",
+		"slug": "Popo",
+		"scheme": "Popo",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"userInterfaceStyle": "automatic",
+		"splash": {
+			"image": "./assets/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true,
+			"config": {
+				"usesNonExemptEncryption": false,
+				"googleMapsApiKey": "AIzaSyDXRyvVCRUovFyKsdmgYUoMx8grozK_hpQ"
+			}
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#ffffff",
+				"permissions": [
+					"ACCESS_COARSE_LOCATION",
+					"ACCESS_FINE_LOCATION"
+				]
+			}
+		},
+		"experiments": {
+			"typedRoutes": true
+		},
+		"plugins": ["expo-router"]
+	}
+}
