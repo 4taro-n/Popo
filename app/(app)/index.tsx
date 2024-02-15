@@ -1,28 +1,37 @@
+import React, { useEffect, useState, useRef } from 'react';
 import { Text, View, StyleSheet, Button as Btn } from "react-native";
 import { Link, useRouter } from "expo-router";
 import Map from '@/components/Map';
 import {AvatarIcon} from '@/components/ui/Svg';
+import MapView, { LatLng } from 'react-native-maps';
 
 export default function MapScreen() {
 	const router = useRouter();
+	const [showMarker, setShowMarker] = useState<boolean>(false);
+	const [destination, setDestination] = useState<LatLng | undefined>();
+	const [latitude, setLatitude] = useState<number>();
+	const [longitude, setLongitude] = useState<number>();
+
+	useEffect(() => {
+		setLatitude(destination?.latitude);
+		setLongitude(destination?.longitude);
+    }, [destination]);
+
 	return (
-		// <View className="flex-1 items-center justify-center bg-background p-4 gap-y-4">
-		// 	<Text className="text-4xl text-foreground font-extrabold tracking-tight lg:text-5xl">
-		// 		Home
-		// 	</Text>
-		// 	<Text className="text-sm text-muted-foreground text-center">
-		// 		You are now authenticated and this session will persist even after
-		// 		closing the app.
-		// 	</Text>
-		// 	<Link href="/two">two</Link>
-		// 	<Link href="/(app)/usersetting">setting</Link>
-		// </View>
 		<View style={styles.container}>
-			<Map />
+			<Map showMarker={showMarker} setShowMarker={setShowMarker} marker={destination} setMarker={setDestination} />
 			<View style={styles.buttonContainer}>
 				{/* <Btn title="Change View" onPress={() => { router.push("/(app)/usersetting");}} /> */}
 				<Link href="/(app)/usersetting"><AvatarIcon /></Link>
 			</View>
+			{/* <View style={styles.destinationBtn}>
+				<Link href="/route/">目的地セット</Link>
+			</View> */}
+			{showMarker && (
+                <View style={styles.destinationBtn}>
+                    <Link href={{pathname: "/route/", params: { test: '123', latitude: latitude? latitude : 0, longitude: longitude? longitude: 0}}}>目的地セット</Link>
+                </View>
+            )}
 		</View>
 
 	);
@@ -37,4 +46,12 @@ const styles = StyleSheet.create({
         bottom: 40, 
         left: 19, 
     },
+	destinationBtn: {
+		// alignItems: 'center',
+		// justifyContent: 'center',
+		position: 'absolute', 
+		right: 50,
+        bottom: 300, 
+		backgroundColor: 'red',
+	},
 });
