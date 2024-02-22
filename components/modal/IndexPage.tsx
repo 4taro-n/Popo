@@ -1,11 +1,15 @@
 import React from 'react';
 import { Text, View, Button as Btn } from "react-native";
 
-const IndexPage = ({ setPage }) => {
+type PageProps = {
+    setPage: (page: string) => void;
+};
+
+const IndexPage: React.FC<PageProps> = ({ setPage }) => {
     return (
         <View>
-            <Text>Page 1</Text>
-            <Btn title="Go to Page 2" onPress={() => setPage('page2')} />
+            <Text>index page</Text>
+            <Btn title="設定" onPress={() => setPage('SettingMenuPage')} />
             {/* <Btn onPress={() => navigateAndCloseModal("/(app)/usersetting")} title="設定へ移動" /> */}
         </View>
     );

@@ -1,14 +1,45 @@
 import React from 'react';
-import { Text, View, Button as Btn } from "react-native";
+import { Text, View, StyleSheet, Pressable } from "react-native";
 
-const IndexPage = ({ setPage }) => {
+type PageProps = {
+    setPage: (page: string) => void;
+};
+
+const SettingMenuPage: React.FC<PageProps> = ({ setPage }) => {
     return (
-        <View>
-            <Text>Page 1</Text>
-            <Btn title="Go to Page 2" onPress={() => setPage('page2')} />
-            {/* <Btn onPress={() => navigateAndCloseModal("/(app)/usersetting")} title="設定へ移動" /> */}
+        <View style={styles.settingBtnContainer}>
+            <Pressable style={styles.settingBtn} onPress={() => setPage('ProfilePage')} >
+                <Text style={styles.settingBtn_Text}>プロフィール</Text>
+            </Pressable>
+            <Pressable style={styles.settingBtn} onPress={() => setPage('AddressPage')} >
+                <Text style={styles.settingBtn_Text}>住所登録</Text>
+            </Pressable>
+            <Pressable style={styles.settingBtn} onPress={() => setPage('NavigationPage')} >
+                <Text style={styles.settingBtn_Text}>ナビゲーション設定</Text>
+            </Pressable>
+            <Pressable style={styles.settingBtn} onPress={() => setPage('PolicyPage')} >
+                <Text style={styles.settingBtn_Text}>ポリシー</Text>
+            </Pressable>
         </View>
     );
 };
 
-export default IndexPage;
+const styles = StyleSheet.create({
+	settingBtnContainer: {
+        flex: 1/1.4,
+        justifyContent: 'space-around',
+    },
+    settingBtn: {
+        height: 90,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        borderRadius: 8,
+    },
+    settingBtn_Text: {
+        fontWeight: '600',
+        fontSize: 22,
+        marginLeft: 20,
+    },
+});
+
+export default SettingMenuPage;
