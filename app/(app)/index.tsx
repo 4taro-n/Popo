@@ -22,7 +22,8 @@ export default function MapScreen() {
 			<Map showMarker={showMarker} setShowMarker={setShowMarker} marker={destination} setMarker={setDestination} />
 			<View style={styles.buttonContainer}>
 				{/* <Btn title="Change View" onPress={() => { router.push("/(app)/usersetting");}} /> */}
-				<Link href="/(app)/usersetting"><AvatarIcon /></Link>
+				{/* <Link href="/(app)/usersetting"><AvatarIcon /></Link> */}
+				<Link href="/(app)/modal"><AvatarIcon /></Link>
 			</View>
 			{/* <View style={styles.destinationBtn}>
 				<Link href="/route/">目的地セット</Link>

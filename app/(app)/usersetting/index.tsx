@@ -3,9 +3,18 @@ import { Button } from "@/components/ui";
 import { useSupabase } from "@/hooks/useSupabase";
 import { Link, Stack, router } from "expo-router";
 import { useFonts } from 'expo-font';
+import React, { useEffect } from 'react';
+import { insertTestData } from '@/lib/database/Test';
 
 export default function SettingScreen() {
-	const { signOut } = useSupabase();
+	const { signOut, user } = useSupabase();
+
+	// useEffect(() => {
+    //     insertTestData(user.id);
+    // }, []);
+
+	
+
 
 	useFonts({
 		'zen_maru_gothic': require('@/assets/fonts/Zen_Maru_Gothic/ZenMaruGothic-Regular.ttf'),
@@ -36,6 +45,16 @@ export default function SettingScreen() {
 			>
 				Sign out
 			</Button>
+
+			{user ? (
+				<View>
+					<Text style={styles.text}>User Info:</Text>
+					<Text style={styles.text}>ID: {user.id}</Text>
+					<Text style={styles.text}>Email: {user.email}</Text>
+				</View>
+			) : (
+				<Text style={styles.text}>No user logged in.</Text>
+			)}
 			<Btn onPress={() => router.push("/usersetting/basic")} title="基本情報" />
 			<Btn onPress={() => router.push("/usersetting/feedback")} title="フィードバック" />
 			<Btn onPress={() => router.push("/usersetting/goal")} title="目標設定" />

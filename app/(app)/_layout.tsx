@@ -25,7 +25,7 @@ export default function AppLayout() {
 			}}
 		>
 			<Stack.Screen name="index" />
-			<Stack.Screen name="two" />
+			<Stack.Screen name="modal" options={{ presentation: 'modal',}}/>
 			<Stack.Screen name="tutorial" />
 		</Stack>
 	);
